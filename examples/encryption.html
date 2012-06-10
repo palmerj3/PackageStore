@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="../src/packagestore.js"></script>
+  <script type="text/javascript">
+    var packagestore = new PackageStore();
+    packagestore.settings.encrypt = function(str) {
+      return window.btoa(str);
+    }
+    packagestore.settings.decrypt = function(str) {
+      return window.atob(str);
+    }
+    packagestore.init();
+
+    var tests = [
+      {
+        'key': 'simple_string',
+        'value': 'abc123'
+      },
+      {
+        'key': 'simple_integer',
+        'value' : 5
+      },
+      {
+        'key': 'simple_float',
+        'value' : 5.5
+      },
+      {
+        'key': 'simple_boolean',
+        'value' : false
+      },
+      {
+        'key': 'object',
+        'value' : {key: 'test'}
+      }
+    ];
+
+    for (var i = 0, l = tests.length; i < l; i +=1) {
+      var test = tests[i];
+      packagestore.setItem(test['key'], test['value']);
+      
+      if (typeof (packagestore.getItem(test['key'])) === typeof (test['value'])) {
+        console.log('Passed!');
+      } else {
+        console.log('Failed!');
+        console.log('Original: ' + test['value'] + ' (' + typeof(test['value']) + ')');
+        console.log('New: ' + packagestore.getItem(test['key']) + ' (' + typeof(packagestore.getItem(test['key'])) +')');
+      }
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

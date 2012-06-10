@@ -4,6 +4,8 @@ PackageStore
 A JavaScript library that allows for flexible storage of data in a secure manner.
 The interface to store variables is exactly the same as localStorage.
 
+All variables are persisted in a single localStorage variable, which can be optionally encrypted with the algorithm of your choice.
+
 Simple Example:
 ```
 var packagestore = new PackageStore();

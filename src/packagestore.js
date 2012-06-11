@@ -18,7 +18,14 @@ var PackageStore = function () {
         storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
       }
       return typeof (storage_contents[key]) === 'undefined' ? '' : storage_contents[key];
-    };
+    },
+    _remove = function (key) {
+      if (localStorage.getItem(_storageKey)) {
+        var storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
+        delete(storage_contents[key]);
+        return localStorage.setItem(_storageKey, _encrypt(JSON.stringify(storage_contents)));
+      }
+    }
 
   return {
     settings : {
@@ -33,6 +40,10 @@ var PackageStore = function () {
 
     getItem : function (key) {
       return _retrieve(key);
+    },
+    
+    removeItem : function (key) {
+      return _remove(key);
     },
 
     init : function () {

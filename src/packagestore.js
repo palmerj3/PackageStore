@@ -43,6 +43,10 @@ var PackageStore = function (args) {
         delete(storage_contents[key]);
         return localStorage.setItem(_storageKey, _encrypt(JSON.stringify(storage_contents)));
       }
+    },
+    
+    clear : function () {
+      return localStorage.remove(_storageKey);
     }
   }
 };

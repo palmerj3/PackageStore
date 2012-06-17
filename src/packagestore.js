@@ -47,6 +47,20 @@ var PackageStore = function (args) {
     
     clear : function () {
       return localStorage.remove(_storageKey);
+    },
+    
+    length : function () {
+      var storage_contents = {},
+        cnt = 0;
+      if (localStorage.getItem(_storageKey)) {
+        storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
+      }
+      for (var key in storage_contents) {
+        if (storage_contents.hasOwnProperty(key)) {
+          cnt += 1;
+        }
+      }
+      return cnt;
     }
   }
 };

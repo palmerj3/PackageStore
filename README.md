@@ -8,7 +8,9 @@ All variables are persisted in a single localStorage variable, which can be opti
 
 Simple Example:
 ```
-var packagestore = new PackageStore('MyStorageKey');
+var packagestore = new PackageStore({
+  'storageKey' : 'HighlyRecommendYouChangeThis'
+});
 
 packagestore.setItem('my_variable', 'Hello world!');
 console.log(packagestore.getItem('my_variable'));
@@ -16,14 +18,15 @@ console.log(packagestore.getItem('my_variable'));
 
 With Encryption:
 ```
-var packagestore = new PackageStore('MyStorageKey',
-  function(str) {
+var packagestore = new PackageStore({
+  'storageKey' : 'HighlyRecommendYouChangeThis',
+  'encrypt' : function(str) {
     return window.btoa(str);
   },
-  function(str) {
+  'decrypt' : function(str) {
     return window.atob(str);
   }
-);
+});
 
 packagestore.setItem('my_variable', 'Hello world!');
 console.log(packagestore.getItem('my_variable'));

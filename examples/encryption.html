@@ -3,14 +3,15 @@
 <head>
   <script type="text/javascript" src="../src/packagestore.js"></script>
   <script type="text/javascript">
-    var packagestore = new PackageStore('MyStorageKey',
-      function(str) {
+    var packagestore = new PackageStore({
+      'storageKey' : 'HighlyRecommendYouChangeThis',
+      'encrypt' : function(str) {
         return window.btoa(str);
       },
-      function(str) {
+      'decrypt' : function(str) {
         return window.atob(str);
       }
-    );
+    });
 
     var tests = [
       {

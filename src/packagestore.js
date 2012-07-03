@@ -1,10 +1,10 @@
 var PackageStore = function (args) {
   'use strict';
+
   var _encrypt = function (str) { return str; },
     _decrypt = function (str) { return str },
     _storageKey = 'PackageStore';
   
-  // Initialize params
   if (typeof (args) !== 'undefined') {
     if (typeof (args['storageKey']) !== 'undefined') {
       _storageKey = args['storageKey'];

@@ -22,7 +22,7 @@ var PackageStore = function (args) {
   return {
     setItem : function (key, value) {
       var storage_contents = {};
-      if (localStorage.getItem(_storageKey)) {
+      if (localStorage.getItem(_storageKey) !== null) {
         storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
       }
       storage_contents[key] = value;
@@ -31,14 +31,14 @@ var PackageStore = function (args) {
 
     getItem : function (key) {
       var storage_contents = {};
-      if (localStorage.getItem(_storageKey)) {
+      if (localStorage.getItem(_storageKey) !== null) {
         storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
       }
-      return typeof (storage_contents[key]) === 'undefined' ? '' : storage_contents[key];
+      return typeof (storage_contents[key]) === 'undefined' ? null : storage_contents[key];
     },
 
     removeItem : function (key) {
-      if (localStorage.getItem(_storageKey)) {
+      if (localStorage.getItem(_storageKey) !== null) {
         var storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
         delete(storage_contents[key]);
         return localStorage.setItem(_storageKey, _encrypt(JSON.stringify(storage_contents)));
@@ -52,7 +52,7 @@ var PackageStore = function (args) {
     length : function () {
       var storage_contents = {},
         cnt = 0;
-      if (localStorage.getItem(_storageKey)) {
+      if (localStorage.getItem(_storageKey) !== null) {
         storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
       }
       for (var key in storage_contents) {

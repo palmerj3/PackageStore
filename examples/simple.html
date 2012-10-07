@@ -3,6 +3,9 @@
 <head>
   <script type="text/javascript" src="../src/packagestore.js"></script>
   <script type="text/javascript">
+    // To ensure things work in between tests
+    localStorage.clear();
+
     var packagestore = new PackageStore({
       'storageKey' : 'HighlyRecommendYouChangeThis'
     });

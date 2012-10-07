@@ -19,30 +19,30 @@ var PackageStore = function (args) {
     }
   }
 
+  var _getContents = function() {
+    var storage_contents = {};
+    if (localStorage.getItem(_storageKey) !== null) {
+      storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
+    }
+    return storage_contents;
+  }
+
   return {
     setItem : function (key, value) {
-      var storage_contents = {};
-      if (localStorage.getItem(_storageKey) !== null) {
-        storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
-      }
+      var storage_contents = _getContents();
       storage_contents[key] = value;
       return localStorage.setItem(_storageKey, _encrypt(JSON.stringify(storage_contents)));
     },
 
     getItem : function (key) {
-      var storage_contents = {};
-      if (localStorage.getItem(_storageKey) !== null) {
-        storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
-      }
+      var storage_contents = _getContents();
       return typeof (storage_contents[key]) === 'undefined' ? null : storage_contents[key];
     },
 
     removeItem : function (key) {
-      if (localStorage.getItem(_storageKey) !== null) {
-        var storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
-        delete(storage_contents[key]);
-        return localStorage.setItem(_storageKey, _encrypt(JSON.stringify(storage_contents)));
-      }
+      var storage_contents = _getContents();
+      delete(storage_contents[key]);
+      return localStorage.setItem(_storageKey, _encrypt(JSON.stringify(storage_contents)));
     },
     
     clear : function () {
@@ -50,11 +50,8 @@ var PackageStore = function (args) {
     },
     
     length : function () {
-      var storage_contents = {},
+      var storage_contents = _getContents(),
         cnt = 0;
-      if (localStorage.getItem(_storageKey) !== null) {
-        storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
-      }
       for (var key in storage_contents) {
         if (storage_contents.hasOwnProperty(key)) {
           cnt += 1;
@@ -64,11 +61,8 @@ var PackageStore = function (args) {
     },
     
     key : function (i) {
-      var storage_contents = {},
+      var storage_contents = _getContents(),
         cnt = 0;
-      if (localStorage.getItem(_storageKey) !== null) {
-        storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
-      }
       for (var key in storage_contents) {
         if (storage_contents.hasOwnProperty(key)) {
           if (cnt === i) {

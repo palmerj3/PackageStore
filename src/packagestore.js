@@ -61,6 +61,23 @@ var PackageStore = function (args) {
         }
       }
       return cnt;
+    },
+    
+    key : function (i) {
+      var storage_contents = {},
+        cnt = 0;
+      if (localStorage.getItem(_storageKey) !== null) {
+        storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
+      }
+      for (var key in storage_contents) {
+        if (storage_contents.hasOwnProperty(key)) {
+          if (cnt === i) {
+            return key;
+          }
+          cnt += 1;
+        }
+      }
+      return null;
     }
   }
 };

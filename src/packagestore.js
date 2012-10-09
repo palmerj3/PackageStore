@@ -3,7 +3,14 @@ var PackageStore = function (args) {
 
   var _encrypt = function (str) { return str; },
     _decrypt = function (str) { return str },
-    _storageKey = 'PackageStore';
+    _storageKey = 'PackageStore',
+    _getContents = function() {
+      var storage_contents = {};
+      if (localStorage.getItem(_storageKey) !== null) {
+        storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
+      }
+      return storage_contents;
+    };
   
   if (typeof (args) !== 'undefined') {
     if (typeof (args['storageKey']) !== 'undefined') {
@@ -17,14 +24,6 @@ var PackageStore = function (args) {
     if (typeof (args['decrypt']) === 'function') {
       _decrypt = args['decrypt'];
     }
-  }
-
-  var _getContents = function() {
-    var storage_contents = {};
-    if (localStorage.getItem(_storageKey) !== null) {
-      storage_contents = JSON.parse(_decrypt(localStorage.getItem(_storageKey)));
-    }
-    return storage_contents;
   }
 
   return {

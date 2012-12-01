@@ -45,7 +45,7 @@ var PackageStore = function (args) {
     },
     
     clear : function () {
-      return localStorage.remove(_storageKey);
+      return localStorage.removeItem(_storageKey);
     },
     
     length : function () {

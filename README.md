@@ -31,3 +31,8 @@ var packagestore = new PackageStore({
 packagestore.setItem('my_variable', 'Hello world!');
 console.log(packagestore.getItem('my_variable'));
 ```
+
+To run the tests:
+```
+Open the file tests/SpecRunner.html in your browser
+```

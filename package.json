@@ -1,5 +1,5 @@
 {
-  "name": "PackageStore",
+  "name": "packagestore",
   "version": "1.0.0",
   "description": "A JavaScript library that allows for flexible storage of data in a secure manner. The interface to store variables is exactly the same as localStorage.",
   "main": "index.js",

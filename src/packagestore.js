@@ -72,3 +72,8 @@ var PackageStore = function (args) {
     return null;
   };
 };
+
+// CommonJS
+if (typeof(module) !== 'undefined') {
+  module.exports = PackageStore;
+}

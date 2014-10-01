@@ -1,0 +1,23 @@
+{
+  "name": "PackageStore",
+  "version": "1.0.0",
+  "description": "A JavaScript library that allows for flexible storage of data in a secure manner. The interface to store variables is exactly the same as localStorage.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/palmerj3/PackageStore.git"
+  },
+  "author": "Jason Palmer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/palmerj3/PackageStore/issues"
+  },
+  "homepage": "https://github.com/palmerj3/PackageStore"
+}
